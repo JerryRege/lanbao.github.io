@@ -14,6 +14,25 @@ Description: roothide安装此版本
 Author: Apple
 Name: DPP(roothide)
 
+Package: com.dao.afc2
+Version: 1.1.7-1
+Architecture: iphoneos-arm64
+Maintainer: Cannathea <csupport@cannathea.com>
+Pre-Depends: dpkg (>= 1.14.25-8)
+Depends: cy+cpu.arm64, mobilesubstrate, firmware (>= 11.0), ldid | firmware (>= 15.0)
+Conflicts: com.saurik.afc2d, net.angelxwind.afc2d-arm64, com.mrmadtw.afc2forios11, repo.feng.afc2add11, us.scw.afctwoadd, net.angelxwind.afc2ios70, afc2.25pp, afc2.25pp7, afc2.91, app.taig.afc2, com.cannathea.afc2d-arm64, com.82skao.afc2d-arm64
+Replaces: com.saurik.afc2d, net.angelxwind.afc2d-arm64, com.mrmadtw.afc2forios11, repo.feng.afc2add11, us.scw.afctwoadd, net.angelxwind.afc2ios70, afc2.25pp, afc2.25pp7, afc2.91, app.taig.afc2
+Provides: com.saurik.afc2d, net.angelxwind.afc2d-arm64, com.mrmadtw.afc2forios11, repo.feng.afc2add11, us.scw.afctwoadd, net.angelxwind.afc2ios70, afc2.25pp, afc2.25pp7, afc2.91, app.taig.afc2
+Filename: rootless/AFC2(rootless).deb
+Size: 11568
+MD5sum: e0bb3f795412279fab6f33292b3ee8ec
+SHA1: 74c9e8e2f69d7535f4bc2d2f0bd19b8e72dc92b5
+SHA256: 79d0dd8cb1ddc2cf16f83f838f67aa75c00c167677a5f5aff7edd0c88987268c
+Section: Tweaks
+Description: 允许设备通过USB访问完整的文件系统，对iOS 11及更高版本的设备特别有用
+Author: saurik, Cannathea <csupport@cannathea.com>
+Name: AFC2(rootless)
+
 Package: dev.sys.dpprootless
 Version: 1.0
 Architecture: all
