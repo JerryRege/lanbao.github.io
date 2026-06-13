@@ -1,10 +1,20 @@
 #!/bin/sh
-echo "1、删除旧版Packages"
-rm -f Packages Packages.*
 
-echo "2、生成 Packages（固定三个包，哈希动态读取）"
+echo "=========================================="
+echo "软件源更新脚本"
+echo "=========================================="
 
-# 清空 Packages 文件
+# 删除旧文件
+echo ""
+echo "1、删除旧版文件"
+rm -f Packages Packages.bz2 Packages.gz Packages.xz Release
+echo "  已删除旧文件"
+
+# 生成 Packages
+echo ""
+echo "2、生成 Packages"
+
+# 清空并重新写入
 > Packages
 
 echo ""
@@ -156,10 +166,10 @@ echo ""
 echo "生成的包数量: $(grep -c '^Package:' Packages)"
 
 # ============================================================
-# 压缩（包括 xz）
+# 压缩
 # ============================================================
 echo ""
-echo "3、压缩Packages"
+echo "3、压缩文件"
 
 # bzip2
 cat Packages | bzip2 > Packages.bz2
@@ -169,7 +179,7 @@ echo "  生成: Packages.bz2"
 cat Packages | gzip > Packages.gz
 echo "  生成: Packages.gz"
 
-# xz（如果需要）
+# xz（可选）
 if command -v xz >/dev/null 2>&1; then
     cat Packages | xz > Packages.xz
     echo "  生成: Packages.xz"
@@ -178,38 +188,12 @@ else
 fi
 
 # ============================================================
-# 生成 Release（包含 xz）
+# 生成 Release
 # ============================================================
 echo ""
 echo "4、生成 Release 文件"
 
-# 先构建 MD5Sum 部分
-MD5_LINES="MD5Sum:"
-MD5_LINES="$MD5_LINES\n $(md5sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')"
-MD5_LINES="$MD5_LINES\n $(md5sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')"
-MD5_LINES="$MD5_LINES\n $(md5sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')"
-if [ -f Packages.xz ]; then
-    MD5_LINES="$MD5_LINES\n $(md5sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')"
-fi
-
-# SHA1
-SHA1_LINES="SHA1:"
-SHA1_LINES="$SHA1_LINES\n $(sha1sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')"
-SHA1_LINES="$SHA1_LINES\n $(sha1sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')"
-SHA1_LINES="$SHA1_LINES\n $(sha1sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')"
-if [ -f Packages.xz ]; then
-    SHA1_LINES="$SHA1_LINES\n $(sha1sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')"
-fi
-
-# SHA256
-SHA256_LINES="SHA256:"
-SHA256_LINES="$SHA256_LINES\n $(sha256sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')"
-SHA256_LINES="$SHA256_LINES\n $(sha256sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')"
-SHA256_LINES="$SHA256_LINES\n $(sha256sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')"
-if [ -f Packages.xz ]; then
-    SHA256_LINES="$SHA256_LINES\n $(sha256sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')"
-fi
-
+# 生成 Release 文件（直接写入，格式正确）
 cat > Release << EOF
 Origin: dpp软改工具
 Label: dpp软改工具
@@ -221,15 +205,82 @@ Components: main
 Description: 仅用于学习交流
 Date: $(date -u +"%a, %d %b %Y %H:%M:%S UTC")
 
-$MD5_LINES
-
-$SHA1_LINES
-
-$SHA256_LINES
+MD5Sum:
+ $(md5sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')
+ $(md5sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')
+ $(md5sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')
 EOF
 
+# 如果 xz 存在，添加
+if [ -f Packages.xz ]; then
+    cat >> Release << EOF
+ $(md5sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')
+EOF
+fi
+
+# SHA1
+cat >> Release << EOF
+
+SHA1:
+ $(sha1sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')
+ $(sha1sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')
+ $(sha1sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')
+EOF
+
+if [ -f Packages.xz ]; then
+    cat >> Release << EOF
+ $(sha1sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')
+EOF
+fi
+
+# SHA256
+cat >> Release << EOF
+
+SHA256:
+ $(sha256sum Packages 2>/dev/null | awk '{print $1" "$2" Packages"}')
+ $(sha256sum Packages.bz2 2>/dev/null | awk '{print $1" "$2" Packages.bz2"}')
+ $(sha256sum Packages.gz 2>/dev/null | awk '{print $1" "$2" Packages.gz"}')
+EOF
+
+if [ -f Packages.xz ]; then
+    cat >> Release << EOF
+ $(sha256sum Packages.xz 2>/dev/null | awk '{print $1" "$2" Packages.xz"}')
+EOF
+fi
+
 echo "  生成: Release"
+
+# 验证
+echo ""
+echo "=========================================="
+echo "验证哈希一致性"
+if [ -f Packages.bz2 ]; then
+    echo "Packages.bz2 MD5: $(md5sum Packages.bz2 2>/dev/null | cut -d' ' -f1)"
+    echo "Release MD5: $(grep Packages.bz2 Release | head -1 | awk '{print $1}')"
+fi
+
+echo ""
+echo "生成完成！文件列表："
+ls -la Packages* Release
+echo "=========================================="
 
 # ============================================================
 # 推送
 # ============================================================
+echo ""
+echo "5、推送到 GitHub"
+
+git add Packages Packages.bz2 Packages.gz Release
+if [ -f Packages.xz ]; then
+    git add Packages.xz
+fi
+git commit -m "update repo"
+
+if git push; then
+    echo "✅ 推送成功！"
+else
+    echo "❌ 推送失败，请手动上传文件"
+fi
+
+echo ""
+echo "完成！"
