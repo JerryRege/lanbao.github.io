@@ -6,19 +6,19 @@ Codename: ios
 Architectures: iphoneos-arm
 Components: main
 Description: Personal repository
-Date: Sat, 13 Jun 2026 11:38:59 UTC
+Date: Sat, 13 Jun 2026 11:39:58 UTC
 
 MD5Sum:
  87f0098f357c1d404afb4a3eea7f99ac 283 Packages
  5b24423e3c673c301db9a5ae8dc2894e 160 Packages.bz2
- 8003676c639b0f3c9533bee6683ac80f 144 Packages.gz
+ 3779b41a9b3cc8b69473d443f4feca20 144 Packages.gz
 
 SHA1:
  9b899895690f13beaa4e731cdc466e6d4a3b3267 283 Packages
  39caf6f47e53c1c5a6536cc37b2f506c40fb84ce 160 Packages.bz2
- 89ea0f17f8db00e7d921b81093e6138122a6dde4 144 Packages.gz
+ b14565d4b3c9fed57f44e2943bd11ef10dbc9a33 144 Packages.gz
 
 SHA256:
  bc8f32a127584da6e48ecbbd0206c5af7d549caa0e5c50834a974055101f8d57 283 Packages
  54e4fa620e7ecdc618fad51bfb5c6d82a7480af2e10036716945c4e916c8da0c 160 Packages.bz2
- cc42aba102460bec9d76d6ba52b68652f8bf6ff983f38d30969247d8b2aacb70 144 Packages.gz
+ 89589f9d4be5b06d155d27ae9faee506d3a28060848e0e9d78b9876424f86594 144 Packages.gz
