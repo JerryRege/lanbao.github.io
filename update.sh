@@ -21,9 +21,9 @@ echo ""
 echo "开始处理插件..."
 
 # ============================================================
-# 插件1: dev.sys.dipp (roothide)
+# 插件1: dev.sys.roothide (roothide)
 # ============================================================
-pkgname="dev.sys.dipp"
+pkgname="dev.sys.roothide"
 version="1.0"
 architecture="all"
 maintainer="DPP"
@@ -119,9 +119,9 @@ else
 fi
 
 # ============================================================
-# 插件3: dev.sys.dpprootless (rootless)
+# 插件3: dev.sys.rootless (rootless)
 # ============================================================
-pkgname="dev.sys.dpprootless"
+pkgname="dev.sys.rootless"
 version="1.0"
 architecture="all"
 maintainer="DPP"
