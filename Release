@@ -1,24 +1,33 @@
-Origin: JerryRege
-Label: Lanbao Source
+Origin: dpp隐私保护
+Label: dpp隐私保护
 Suite: stable
 Version: 1.0
 Codename: ios
-Architectures: iphoneos-arm
+Architectures: iphoneos-arm iphoneos-arm64 iphoneos-arm64e
 Components: main
-Description: Personal repository
-Date: Sat, 13 Jun 2026 11:39:58 UTC
+Description: 仅用于学习交流
+Date: Sat, 13 Jun 2026 11:42:41 UTC
 
 MD5Sum:
- 87f0098f357c1d404afb4a3eea7f99ac 283 Packages
- 5b24423e3c673c301db9a5ae8dc2894e 160 Packages.bz2
- 3779b41a9b3cc8b69473d443f4feca20 144 Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e *Packages Packages
+ 4059d198768f9f8dc9372dc1c54bc3c3 *Packages.bz2 Packages.bz2
+ 7029066c27ac6f5ef18d660d5741979a *Packages.gz Packages.gz
+ 8dc5aea5b03dff8595f096f9e368e888 *Packages.xz Packages.xz
+ d41d8cd98f00b204e9800998ecf8427e *Packages.lzma Packages.lzma
+ d41d8cd98f00b204e9800998ecf8427e *Packages.zst Packages.zst
 
 SHA1:
- 9b899895690f13beaa4e731cdc466e6d4a3b3267 283 Packages
- 39caf6f47e53c1c5a6536cc37b2f506c40fb84ce 160 Packages.bz2
- b14565d4b3c9fed57f44e2943bd11ef10dbc9a33 144 Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 *Packages Packages
+ 64a543afbb5f4bf728636bdcbbe7a2ed0804adc2 *Packages.bz2 Packages.bz2
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 *Packages.gz Packages.gz
+ 9746882f4236fa1c3a8f86be2f1d9c46680c0b10 *Packages.xz Packages.xz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 *Packages.lzma Packages.lzma
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 *Packages.zst Packages.zst
 
 SHA256:
- bc8f32a127584da6e48ecbbd0206c5af7d549caa0e5c50834a974055101f8d57 283 Packages
- 54e4fa620e7ecdc618fad51bfb5c6d82a7480af2e10036716945c4e916c8da0c 160 Packages.bz2
- 89589f9d4be5b06d155d27ae9faee506d3a28060848e0e9d78b9876424f86594 144 Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *Packages Packages
+ d3dda84eb03b9738d118eb2be78e246106900493c0ae07819ad60815134a8058 *Packages.bz2 Packages.bz2
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 *Packages.gz Packages.gz
+ 0040f94d11d0039505328a90b2ff48968db873e9e7967307631bf40ef5679275 *Packages.xz Packages.xz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *Packages.lzma Packages.lzma
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *Packages.zst Packages.zst
